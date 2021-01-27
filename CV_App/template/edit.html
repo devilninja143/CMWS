@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/user.css">
+</head>
+<body>
+    <button id="backButton"><a href="{% url 'user' %}" style="text-decoration: none; color: #fff;" ><</a></button>
+    <div id="mainContainer">
+        <form action="Edit" method="post">
+            {% csrf_token %}
+        <div id="mainHeader"><h1>User Profile</h1></div>
+        <div id="userInfo">
+            <label for="fullName">First Name: <br>Last Name:</label>
+            <div id="fullName" class="ele">{{form.first_name}} {{form.last_name}}</div>
+            <label for="userName">Username:</label>
+            <div id="userName" class="ele">{{form.username}}</div>
+            <label for="email">Email:</label>
+            <div id="email" class="ele">{{form.email}}</div>
+            <input type="submit" value="Update" id="update"> <button id="CPassword"><a href="{% url 'user' %}" style="text-decoration: none; color: #fff;">Cancel Change</a></button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

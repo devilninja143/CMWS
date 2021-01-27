@@ -1,0 +1,239 @@
+@media screen and (max-width: 500px) {
+  body {
+    padding-top: 100px;
+  }
+  #mainContainer {
+    height: fit-content;
+  }
+  svg {
+    transform: scale(1, 1);
+    width: 90vw;
+  }
+  .container1 h1 {
+    font-size: 1.1rem;
+  }
+  /* svg path {
+  fill: rgb(9, 255, 173);
+} */
+  #templates {
+    flex-direction: column;
+    margin: auto;
+  }
+  #templateBox {
+    margin: auto;
+  }
+}
+.container1 h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(144, 21, 192);
+  font-family: "Major Mono Display", monospace;
+  margin: 0 auto;
+}
+#container {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin: auto;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 0;
+  z-index: 0;
+}
+#templateBox {
+  border: 1px #000 solid;
+  height: 70vh;
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all ease-in-out 150ms;
+}
+.tbox-1 {
+  background: url("../images/Screenshot\ 2020-11-29\ 205007.png");
+}
+.tbox-2 {
+  background: url("../images/Screenshot\ 2020-12-15\ 174228.png");
+}
+* {
+  font-size: 1.2rem;
+}
+h1 {
+  font-size: 2rem;
+}
+#templates {
+  display: flex;
+  width: 90vw;
+  justify-content: center;
+}
+#templateBox:hover {
+  transform: scale(1.05);
+}
+#checkbox {
+  display: none;
+}
+#templateBox img {
+  width: 20vw;
+}
+#template1,
+#template2 {
+  display: block;
+}
+#Info {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr;
+  border: 1px rgb(13, 199, 28) solid;
+  border-radius: 15px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+#Info label {
+  text-align: right;
+  margin: 10px;
+  font-weight: bolder;
+}
+#Info input {
+  margin: 1px;
+  text-align: center;
+  border: 1px rgb(13, 199, 28) solid;
+  height: 40px;
+}
+.unMark {
+  display: none;
+}
+#objBox {
+  width: 80vw;
+  margin: auto;
+}
+#objBox textarea {
+  width: 100%;
+}
+#templateColor {
+  width: 10rem;
+  border-radius: 1rem;
+  height: 50px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+#container #label {
+  background: linear-gradient(rgb(73, 219, 6), rgb(0, 149, 248));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#educationsBox {
+  border: 1px rgb(73, 219, 6) solid;
+  padding: 10px;
+  display: grid;
+  border-radius: 15px;
+  width: 80vw;
+  margin: auto;
+}
+#objBox textarea {
+  width: 80vw;
+  border: 1px rgb(73, 219, 6) solid;
+  border-radius: 15px;
+  padding: 10px;
+}
+#personalAccomplishments,
+#professionalAccomplishments {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px rgb(73, 219, 6) solid;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80vw;
+  margin: 20px auto;
+}
+#workHistory {
+  border: 1px rgb(73, 219, 6) solid;
+  border-radius: 15px;
+  padding: 15px;
+  display: grid;
+  width: 80vw;
+  margin: auto;
+}
+#workHistory input {
+  width: 96%;
+}
+#div {
+  display: flex;
+}
+#cvSubmit {
+  border: 1px #000 solid;
+  border-radius: 5px;
+  background: linear-gradient(
+    40deg,
+    rgb(44, 178, 255),
+    rgb(39, 168, 255),
+    rgb(28, 147, 226),
+    rgb(28, 147, 226),
+    rgb(32, 166, 255),
+    rgb(5, 226, 215)
+  );
+  color: #fff;
+}
+#workHistory input {
+  margin: 5px;
+}
+@media screen and (min-width: 501px) {
+  svg {
+    overflow: hidden;
+    transform: scale(2.2, 1);
+    height: 30vh;
+    width: 44vw;
+  }
+}
+@media screen and (min-width: 801px) {
+  #templateBox {
+    width: 31vw;
+    margin: 0px 20px;
+  }
+  #templateBox img {
+    width: 30vw;
+  }
+  #educationsBox {
+    grid-template-columns: 0.5fr 1fr;
+  }
+  #personalAccomplishments,
+  #professionalAccomplishments {
+    grid-template-columns: 0.5fr 1fr;
+  }
+  #workHistory {
+    grid-template-columns: 1fr 1fr;
+  }
+  #edateStart,
+  #edateEnd {
+    grid-row: 3/5;
+  }
+}
+@media screen and (max-width: 768px) {
+  #templateBox {
+    width: 70vw;
+    margin: 10px auto;
+  }
+  #templates {
+    flex-direction: column;
+    margin: auto;
+  }
+  #Info {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+  #Info label {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 501px) {
+  #templateBox img {
+    width: 50vw;
+  }
+}

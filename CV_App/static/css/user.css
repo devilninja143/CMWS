@@ -1,0 +1,96 @@
+body{
+    background: url("../images/Logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+#backButton{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background: radial-gradient( rgb(0, 248, 132),rgb(0, 248, 174), rgb(127, 225, 255));
+    transition:  ease-in-out 500ms;
+    display: fixed;
+    
+}
+#backButton:hover{
+    transform: rotate(360deg);
+}
+#backButton:focus{
+    outline: none;
+}
+#mainContainer{
+    border: 1px rgb(5, 216, 110) solid;
+    width: 80vw;
+    border-radius: 15px;
+    display: grid;
+    justify-content: center;
+    margin: 100px auto;
+    background-color: rgba(255, 255, 255, 0.767);
+
+}
+#mainHeader{
+    text-align: center;
+}
+#mainHeader h1{
+    background: linear-gradient(rgb(73, 219, 6), rgb(0, 149, 248));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bolder;
+    font-size: 2rem;
+    width: 100%;
+}
+#userInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#userInfo label{
+    text-align: center;
+    font-weight: bolder;
+    background: linear-gradient(rgb(83, 241, 9), rgb(27, 162, 252));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#update,#CPassword{
+    margin: 10px;
+    font-weight: bolder;
+    color: #fff;
+    border-radius: 5px;
+}
+#CPassword{
+    background: linear-gradient(rgb(221, 34, 34), rgb(247, 136, 136));
+}
+#update{
+    background: linear-gradient(45deg,rgb(3, 235, 146), rgb(5, 196, 230));
+}
+.ele{
+    border: 2px rgb(4, 216, 128) solid;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5px;
+}
+label{
+    border: 2px rgb(4, 216, 128) solid;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5px;
+}
+@media screen and (min-width: 800px){
+    *{
+        font-family: sans-serif;
+        font-size: 1.5rem;
+    }
+}
+@media screen and (min-width: 680px){
+    *{
+        font-family: sans-serif;
+        font-size: 1.3rem;
+    }
+}
+@media screen and (max-width: 500px){
+    body{
+        background-size: contain;
+        background-position: center;
+    }
+}

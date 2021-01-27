@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    
+    {% block linkStyle %}
+        
+    {% endblock linkStyle %}
+        
+    <style>
+        .ListItem{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px rgb(2, 214, 90) solid;
+            border-radius: 15px;
+            justify-content: center;
+            padding: 0px;
+            width: 80%;
+            margin: auto;
+            background: linear-gradient(7 5deg,rgb(73, 219, 6), rgb(0, 149, 248));
+        }
+        .ListItem li{
+            list-style: none ;
+            font-size: larger;
+            font-family: sans-serif;
+            text-align: center;
+            border: 1px rgb(6, 228, 117) solid;
+            border-radius: 10px;
+            margin: 2px;
+            background: #fff;
+        }
+        #ListI a{
+            font-size: 24px;
+            background: linear-gradient(45deg,rgb(73, 219, 6), rgb(0, 149, 248));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #footer{
+            width: 100%;
+            display: grid;
+            justify-content: center;
+            background: linear-gradient(45deg,rgb(2, 214, 90), rgb(0, 186, 219));
+            color: #fff;
+            font-family: sans-serif ;
+        }
+        #label{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: linear-gradient(rgb(73, 219, 6), rgb(0, 149, 248));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .success{
+            text-align: center;
+            background-color: rgba(2, 214, 90, 0.61);
+            font-family: sans-serif;
+            font-weight: bolder;
+            font-size: 2rem;
+            margin: auto;
+            display: grid;
+            width: 97vw;
+            color: #fff;
+            justify-content: center;
+        }
+        .error{
+            text-align: center;
+            background-color: rgba(221, 38, 31, 0.61);
+            font-family: sans-serif;
+            font-weight: bolder;
+            font-size: 2rem;
+            margin: auto;
+            display: grid;
+            width: 97vw;
+            color: #fff;
+            justify-content: center;
+        }
+    </style>
+    
+    {% block title %}
+    <title>Create Your CV Easily</title>
+    {% endblock title %}
+</head>
+<body>
+    <div id="headerBox">
+    <div id="mainHeader">
+        <div id="textLogo"><h1>CMWS</h1></div>
+    </div>
+        <input type="checkbox" name="nav-toggle" id="nav-toggle" style="display: none;">
+    <div id="navbar">
+        <div id="hambergerMenu"><label for="nav-toggle"><img src="../static/images/menu.png" alt="" width="30px"></label></div>
+        <ul id="navItems">
+            <li id="navItem"><a href="">Create CV</a></li>
+            <li id="navItem"><a href="about">About Us & Privacy Policy</a></li>
+            {% if user.is_authenticated %}
+            <li id="navItem"><a href="{% url 'user' %}">{{user}}</a></li>
+            <li id="navItem">
+                <div id="accountAction" class="signUpBtn" class="sbtnM"><button><a href="Logout">SIGN OUT</a></button></div>
+            </li>
+            {% else %}
+            <li id="navItem">
+                <div id="accountAction" class="signUpBtn" class="sbtnM"><button><a href="Login">SIGN IN</a></button></div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    </div>
+    
+    {% block content %}
+    {% for message in messages %}
+        <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</span>
+    {% endfor %}
+    
+
+        
+    
+        
+        
+    <div id="mianContainer">
+        <div id="container" class="container1">
+            <svg  viewBox="0 -0 400 130">
+                <path d="M 0 100 C 150 200 250 0 400 100 L 400 0 L 0 0 L 0 100 Z" fill="url(#path-fill)" stroke="none" style="margin: auto;width:fit-content"></path>
+                <defs>
+                    <linearGradient id="path-fill" gradientTransform="rotate(90)">
+                        <stop offset='0%' style="stop-color:rgb(6, 228, 117)">
+                            <animate attributeName="stop-color" values="rgb(6, 228, 117);rgb(0, 255, 255);rgb(6, 228, 117)" dur="2s", repeatCount="indefinite"></animate>
+                        </stop>
+                        <stop offset='100%' style="stop-color:rgb(0, 255, 255)">
+                            <animate attributeName="stop-color" values="rgb(0, 255, 255);rgb(6, 228, 117);rgb(0, 255, 255)" dur="2s" , repeatCount="indefinite"></animate>
+                        </stop>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h1 >Wellcome to CMWS</h1>
+            <p>CMSW is a website which will help you create a CV with some simple Info. By following the guide bellow you just have to fill up a form and it will create a CV atomaticly just for you</p>
+            <svg  viewBox="0 60 400 130">
+                <path d="M 0 100 C 150 200 250 0 400 100 L 400 200 L 0 200 L 0 100 Z" fill="url(#path-fill)" stroke="none"
+                    style="margin: auto;width:fit-content"></path>
+            </svg>
+        </div>
+        <div id="container" class="formContainer">
+            <form action="CVView" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="templates" id="mainLabel"><h1 id="label">Choose CV Template Layout</h1></label>
+                <div id="templates">
+                    <label for="template1" id="label1">
+                        <div id="templateBox" class="tbox-1"><img src="../static/images/check.svg" alt="" id="img1" class="unMark"></div>
+                    </label>
+                    <input type="checkbox" name="template1" id="template1" class="checkbox">
+                    <label for="template2" id="label2">
+                        <div id="templateBox" class="tbox-2"><img src="../static/images/check.svg" alt="" id="img2" class="unMark"></div>
+                    </label>
+                    <input type="checkbox" name="template2" id="template2" class="checkbox">
+                </div>
+                <div id="imageField" class="unMark">
+                    <label for="image">
+                        <h1 id="label">Choose IMG</h1>
+                    </label>
+                    <input type="file" name="cvimage" id="cvimage" accept=".png,.jpg" style="border: 1px rgb(6, 228, 117) solid; border-radius: 15px;" value="C:\Users\devil\OneDrive\Desktop\WEBDEV\CV Website\CV_App\media\media\avatar.png">
+                </div>
+                <label  for="Color"><h1 id="label">Choose Color for CV</h1></label>
+                <label  for="templateColor"><p id="label">Click and change Color</p></label>
+                <div id="colorInput"><input type="color" name="templateColor" id="templateColor"></div>
+                <h1><label id="label" for="Info"><b>Personal Info For CV</b></label></h1>
+                <div id="Info">
+                    <label id="label" for="cvName">Full-Name:</label><input type="text" name="cvName" id="cvName" placeholder="Enter Your Full Name." required>
+                    <label id="label" for="cvAddress">Address:</label><input type="text" name="cvAddress" id="cvAddress" placeholder="Enter Your Address." required>
+                    <label id="label" for="cvCity">City:</label><input type="text" name="cvCity" id="cvCity" placeholder="Enter The City You live in." required>
+                    <label id="label" for="cvZIP">ZIP-Code:</label><input type="number" name="cvZIP" id="cvZIP" placeholder="Enter your area zip code" required>
+                    <label id="label" for="cvEmail">Email:</label><input type="email" name="cvEmail" id="cvEmail" placeholder="Enter your Email Address" required>
+                    <label id="label" for="cvEmail">Phone:</label><input type="Phone" name="cvPhone" id="cvPhone" placeholder="Enter your Phone number " required>
+                </div>
+                <h1><label for="objBox" id="label">Objective</label></h1>
+                <div id="objBox">
+                    <textarea name="objective" id="objective" cols="30" rows="10">I am seeking employment with a company where I can grow professionally and personally.I seek challenging opportunities. where I can fully use my skills for the success of the organization.With the sill sets that I have I am very confident that I am perfect for this job.</textarea>
+                </div>
+                <h1><label id="label" for="accomplishments">ACCOMPLISHMENTS</label></h1>
+                <div id="accomplishments">
+                    <label for="personalAccomplishments" id="label">Personal Accomplishments</label>
+                    <div id="personalAccomplishments">
+                        <label for="personalAccom1" id="label">Personal Accomplishment 1:</label><input type="text" name="personalAccom1" id="personalAccom1" placeholder="Enter PersonalAccomplishments can be leaft blank">
+                        <label for="personalAccom2" id="label">Personal Accomplishment 2:</label><input type="text" name="personalAccom2" id="personalAccom2" placeholder="Enter PersonalAccomplishments can be leaft blank">
+                        <label for="personalAccom3" id="label">Personal Accomplishment 3:</label><input type="text" name="personalAccom3" id="personalAccom3" placeholder="Enter PersonalAccomplishments can be leaft blank">
+                        <label for="personalAccom4" id="label">Personal Accomplishment 4:</label><input type="text" name="personalAccom4" id="personalAccom4" placeholder="Enter PersonalAccomplishments can be leaft blank">
+                        <label for="personalAccom5" id="label">Personal Accomplishment 5:</label><input type="text" name="personalAccom5" id="personalAccom5" placeholder="Enter PersonalAccomplishments can be leaft blank">
+                    </div>
+                    <label for="professionalAccomplishments" id="label">Professional Accomplishments</label>
+                    <div id="professionalAccomplishments">
+                        <label for="professionalAccom1" id="label">Professional Accomplishment 1:</label><input type="text" name="professionalAccom1" id="professionalAccom1" placeholder="Enter your professional Accomplish ment can be leaft blank">
+                        <label for="professionalAccom2" id="label">Professional Accomplishment 2:</label><input type="text" name="professionalAccom2" id="professionalAccom2" placeholder="Enter your professional Accomplish ment can be leaft blank">
+                        <label for="professionalAccom3" id="label">Professional Accomplishment 3:</label><input type="text" name="professionalAccom3" id="professionalAccom3" placeholder="Enter your professional Accomplish ment can be leaft blank">
+                        <label for="professionalAccom4" id="label">Professional Accomplishment 4:</label><input type="text" name="professionalAccom4" id="professionalAccom4" placeholder="Enter your professional Accomplish ment can be leaft blank">
+                        <label for="professionalAccom5" id="label">Professional Accomplishment 5:</label><input type="text" name="professionalAccom5" id="professionalAccom5" placeholder="Enter your professional Accomplish ment can be leaft blank">
+                    </div>
+                    <h1><label id="label" for="educationBox" id="label">Educations</label></h1>
+                    <div id="educationsBox">
+                        <label id="label" for="school/collegeInput">School/College:</label><input type="text" name="school/college" id="school/college" placeholder="Enter your School or college name" required>
+                        <label id="label" for="subject">Subject:</label><input type="text" name="subject" id="subject" placeholder="Enter Your Subject" required>
+                        <label id="label" for="grade">grade:</label><input type="number" name="grade" id="grade" placeholder="Enter your Grade" required step="0.01">
+                        <label id="label" for="Graduate_date">date:</label><input type="number" name="gdate" id="gdate" placeholder="Enter your graduation date" required>
+                    </div>
+                    <br>
+                    <div id="educationsBox">
+                        <label id="label" for="school/collegeInput1">School/College:</label><input type="text" name="school/college1" id="school/college" placeholder="Enter your School or college name" >
+                        <label id="label" for="subject1">Subject:</label><input type="text" name="subject1" id="subject" placeholder="Enter Your Subject" >
+                        <label id="label" for="grade1">grade:</label><input type="number" name="grade1" id="grade" placeholder="Enter your Grade"  step="0.01">
+                        <label id="label" for="Graduate_date1">date:</label><input type="number" name="gdate1" id="gdate" placeholder="Enter your graduation date" >
+                    </div>
+                    <br>
+                    <div id="educationsBox">
+                        <label id="label" for="school/collegeInput2">School/College:</label><input type="text" name="school/college2" id="school/college" placeholder="Enter your School or college name" >
+                        <label id="label" for="subject2">Subject:</label><input type="text" name="subject2" id="subject" placeholder="Enter Your Subject" >
+                        <label id="label" for="grade2">grade:</label><input type="number" name="grade2" id="grade" placeholder="Enter your Grade" step="0.01">
+                        <label id="label" for="Graduate_date2">date:</label><input type="number" name="gdate2" id="gdate" placeholder="Enter your graduation date" >
+                    </div>
+                    <h1><label id="label" for="workHistory">Work History</label></h1>
+                    <div id="workHistory">
+                        <label id="label" for="jobTitle">Job Title:</label><input type="text" name="jobTitle" id="jobTitle" placeholder="Enter Job title">
+                        <label id="label" for="companyName">Company Name:</label><input type="text" name="companyName" id="companyName" placeholder="Enter Company Name">
+                        <label id="label" for="grade">Employment Date:</label><div id="div"><input type="number" name="edateStart" id="edateStart" placeholder="starting date"><input type="number" name="edateEnd" id="edateEnd" placeholder="End date"></div>
+                    </div>
+                    <h1><label id="label" for="hobby&Interests">Hobby & Interests</label></h1>
+                    <input type="text" name="hobby&Interests" id="hobby&Interests" placeholder="Enter your Hobby and Interests" required>
+                    <h1><label id="label" for="references">References</label></h1>
+                    <input type="text" name="references" id="references" placeholder="Not required can be leaft empty">
+                </div>
+                <br>
+                <br>
+                <label for="cvSubmit">Click button to Finsh creating your cv</label> <br>
+                <br>
+                <input type="submit" value="Creat CV" id="cvSubmit">
+            </form>
+        </div>
+        <h1 for="listItem" id="label" style="text-align: center;">CV LIST</h1>
+        <ul  id="ListItem" class="ListItem" style="color: rgb(6, 228, 117);">
+            <li id="ListI">Full-Name</li>
+            <li id="ListI">Email</li>
+             
+            {% for c in cv %}
+            <li><a href="{% url 'fullView' c.id %}">{{c.fullName}}</a></li>
+            <li><a href="">{{c.cvEmail}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <footer id="footer">
+        <div id="footer-1">&#169;Copyright 2020 Nurul Hafiz Likhon</div>
+    </footer>
+    {% endblock content %}
+    <script>
+        if(screen.width <= 500){
+            var svg = document.querySelectorAll("svg")[0];
+            svg.setAttribute("viewBox", "0 0 400 100")
+            svg.style.height="200px";
+        }
+        var template1 = document.getElementById("template1")
+        var img1 = document.getElementById("img1")
+        var template2 = document.getElementById("template2")
+        var img2 = document.getElementById("img2")
+        var imgField = document.getElementById("imageField")
+//       unMark(template1, img1)
+//       unMark(template2, img2)
+        template1.addEventListener("change",function(){
+            if (template1.checked == true) {
+                template2.checked = false;
+                img1.classList.remove("unMark")
+                img2.classList.add("unMark")
+                imgField.classList.add("unMark")
+            }
+            else if(template1.checked == false){
+                template2.checked = true;
+                img1.classList.add("unMark")
+                img2.classList.remove("unMark")
+                imgField.classList.remove("unMark")
+            }
+
+        })
+        var cim = document.getElementById("cvimage");
+        
+        template2.addEventListener("change", function(){
+            if (template2.checked == true) {
+                template1.checked = false;
+                img1.classList.add("unMark")
+                img2.classList.remove("unMark")
+                imgField.classList.remove("unMark")
+                cim.setAttribute("required","")
+                
+            }
+            else if (template2.checked == false) {
+                template1.checked = true;
+                img1.classList.remove("unMark")
+                img2.classList.add("unMark")
+                imgField.classList.add("unMark")
+                cim.removeAttribute("required")
+            } 
+        })
+
+
+//        function unMark(Varable,Varable2){
+//            Varable.addEventListener("change", function () {
+//                if(Varable.checked == true){
+//                    Varable2.classList.remove("unMark")
+//                } 
+//                else{
+//                    Varable2.classList.add("unMark")
+//                }
+//                
+//            })
+//        }
+    var list = document.getElementById("ListItem")
+    var footer = document.getElementById("footer")
+    var position = 15;
+    var colorChange = setInterval(
+        function change(){
+            if (position < 360) {
+                list.style.background = "linear-gradient("+ position +"deg,rgb(73, 219, 6), rgb(0, 149, 248))";
+                footer.style.background = "linear-gradient("+ position +"deg,rgb(73, 219, 6), rgb(0, 149, 248))";
+                position += 1;
+            }
+            else if(360 > position >= 0){
+                list.style.background = "linear-gradient(" + position + "deg,rgb(73, 219, 6), rgb(0, 149, 248))";
+                footer.style.background = "linear-gradient(" + position + "deg,rgb(73, 219, 6), rgb(0, 149, 248))";
+                position = 0;
+            }
+            console.log(position)
+        },10
+    )
+    </script>
+    <div id="mianfooter"></div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+#clipBoard {
+  margin: 0px;
+  width: 50vw;
+  height: 100vh;
+  padding: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  background-color: rgba(112, 110, 110, 0.137);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+#clipBoard h1 {
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  -webkit-text-stroke: 0.5px #fff;
+  font-weight: bolder;
+  font-size: 2.8rem;
+}
+body {
+  background: url(../images/background2.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+  background-position: center;
+}
+* {
+  margin: 5px;
+  font-family: sans-serif;
+}
+#clipBoardTop h1 {
+  text-align: center;
+}
+#loginForm {
+  padding: 10px;
+  margin: auto;
+}
+#loginForm label {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bolder;
+  color: rgb(255, 0, 0);
+  text-shadow: 0px 0px 10px #fff;
+  text-transform: uppercase;
+}
+#loginForm input {
+  border: 1px #000 solid;
+}
+#registerForm input {
+  border: 1px #000 solid;
+}
+#loginForm :nth-child(5) {
+  grid-column: 1/3;
+  margin: auto;
+}
+#label {
+  display: flex;
+  flex-direction: column-reverse;
+}
+#csrf {
+  display: none;
+}
+#formBtn {
+  width: 150px;
+  height: 40px;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  background-color: rgba(29, 192, 129, 0.863);
+  border-radius: 0.5rem;
+  margin: auto;
+}
+form input {
+  height: 1.5rem;
+}
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#registerForm {
+  padding: 10px;
+  margin: auto;
+  text-align: right;
+}
+#registerForm label {
+  font-size: 18px;
+  font-weight: bolder;
+  text-align: right;
+  color: rgb(255, 0, 0);
+  text-shadow: 0px 0px 10px #fff;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 1000px) {
+  #clipBoard {
+    width: 30vw;
+  }
+}
+#d1,
+#d2 {
+  text-align: center;
+  color: #000;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+#loginBtn1,
+#loginBtn2 {
+  background: linear-gradient(45deg, rgb(28, 240, 123), rgb(4, 141, 66));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.5px #000;
+}
+@media screen and (max-width: 500px) {
+  #clipBoard {
+    width: 100vw;
+    font-size: 1.8rem;
+    background-color: rgba(0, 0, 0, 0.13);
+  }
+  #loginForm,
+  #registerForm {
+    font-size: 3rem;
+  }
+}
+.unMark {
+  display: none;
+}

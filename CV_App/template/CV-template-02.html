@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/CV-template-CSS/CV-template-02.css">
+    <title>CV-template-02</title>
+    <style>
+        label{
+            color: {{cv.cvColor}};
+        }
+        #img{
+            border-radius: 100px;
+        }
+        #cv_container{
+            width: 90%;
+        }
+    </style>
+</head>
+<body id="body">
+    <h1>here is your CV</h1>
+    <div id="cv_container2"></div>
+    <div id="cv_container">
+        <div id="lite_intro">
+            {% for ci in cvimg %}
+            <div id="img">
+                <img src="{{ci.img.url}}" width="200px" alt="noImg" id="profilePic">
+            </div>
+            {% endfor %}
+            <h1 id="userName">{{cv.fullName}}</h1>
+            <span>{{cv.address}}</span> <b>|</b> 
+            <span>{{cv.city}},{{cv.zip_code}}</span> <b>|</b> 
+            <span>{{cv.cvEmail}}</span> <b>|</b> 
+            <span>{{cv.phoneNum}}</span>
+        </div>
+        <div id="other_intro">
+            <div id="boxes">
+                <label for="objective">Objective</label>
+                <div id="objective">
+                    <p>{{cv.objective}}</p>
+                </div>
+            </div>
+            <div id="boxes">
+                <label for="accomplishments">
+                    ACCOMPLISHMENTS
+                </label>
+                <div id="accomplishments">
+                    <u><h4>PROFESSIONAL AREA OF ACHIEVEMENTS</h4></u>
+                    <p>
+                {% for pa in paccom %}
+                            
+                #{% if pa.paccomplishment1 != "" %}{{pa.paccomplishment1}}{% endif %}|
+                #{% if pa.paccomplishment2 != "" %}{{pa.paccomplishment2}}{% endif %}|
+                #{% if pa.paccomplishment3 != "" %}{{pa.paccomplishment3}}{% endif %}|
+                #{% if pa.paccomplishment4 != "" %}{{pa.paccomplishment4}}{% endif %}|
+                #{% if pa.paccomplishment5 != "" %}{{pa.paccomplishment5}}{% endif %}|
+                #{% endfor %} <br>
+                    </p>
+                    <u><h4>PERSONAL ACHIEVEMENTS</h4></u>
+                    <p>
+                        {% for pra in praccom %}
+                        #{% if pra.praccomplishment1 != "" %}{{pra.praccomplishment1}}{% endif %}|
+                        #{% if pra.praccomplishment2 != "" %}{{pra.praccomplishment2}}{% endif %}|
+                        #{% if pra.praccomplishment3 != "" %}{{pra.praccomplishment3}}{% endif %}|
+                        #{% if pra.praccomplishment4 != "" %}{{pra.praccomplishment4}}{% endif %}|
+                        #{% if pra.praccomplishment5 != "" %}{{pra.praccomplishment5}}{% endif %}|
+                        {% endfor %}<br>
+                    </p>
+                </div>
+            </div>
+            <div id="boxes">
+                <label for="workHistory">Work History</label>
+                <div id="workHistory">
+                    <div id="boxHeader">Job Title</div>
+                    <div id="boxHeader">Company Name</div>
+                    <div id="boxHeader">Employment</div>
+                    {% for w in workhistory %}
+                    <div id="box">{{w.jobTitle}}</div>
+                    <div id="box">{{w.companyName}}</div>
+                    <div id="box">{{w.employmentDateStart}}-{{w.employmentDateEnd}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="boxes">
+                <label for="education">education</label>
+                <div id="education">
+                <div id="boxHeader">School or College</div>
+                <div id="boxHeader">Subject</div>
+                <div id="boxHeader">Grade</div>
+                <div id="boxHeader">Date</div>
+                {% for e in education %}
+                <div id="box">{{e.schoolandcollege}}</div>
+                <div id="box">{{e.subject}}</div>
+                <div id="box">{{e.grade}}</div>
+                <div id="box">{{e.date}}</div>
+                {% endfor %}
+                {% for e in education1 %}
+                <div id="box">{{e.schoolandcollege}}</div>
+                <div id="box">{{e.subject}}</div>
+                <div id="box">{{e.grade}}</div>
+                <div id="box">{{e.date}}</div>
+                {% endfor %}
+                {% for e in education2 %}
+                <div id="box">{{e.schoolandcollege}}</div>
+                <div id="box">{{e.subject}}</div>
+                <div id="box">{{e.grade}}</div>
+                <div id="box">{{e.date}}</div>
+                {% endfor %}
+            </div>
+            <div id="boxes">
+                <label for="hobby">INTERESTS & HOBBIES</label>
+                <div id="hobby">
+                    {{cv.hobbyandinterest}}
+                </div>
+            </div>
+            <div id="boxes">
+                <label for="references">REFERENCES</label>
+                <div id="references">
+                    {{cv.reference}}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <button id="pdfGenerate">Download PDF</button><br>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/html2canvas.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            document.querySelector("#pdfGenerate").addEventListener("click",function(){
+                var timeRemaining = 10;
+                var download = setInterval(
+                    function(){
+                        if(timeRemaining !=0){
+                            timeRemaining -= 1
+                            document.querySelector("#cv_container2").innerHTML = "please wait "+ timeRemaining;
+
+                        }
+                        if(timeRemaining == 0){
+                            document.querySelector("#cv_container2").innerHTML = "";
+                            clearInterval(download)
+                            
+                            timeRemaining = 10;
+                        }
+                        
+                        
+                    },1000
+                )
+                setTimeout(function(){
+                    var opt = {
+                        vMargin: -10,
+                        hMargin: 0,
+                        filename: "cvdoc.pdf",
+                        image: { type: "jpeg", quality: 0.95 },
+                        html2canvas: { scale: 0 },
+                        jsPDF: { unit: 'px', format: [763, 850], orientation: "portrait", hotfixes: ["px_scaling"] }
+                    }
+
+                    const docPdf = document.getElementById("cv_container");
+                    console.log(html2pdf(docPdf, opt))
+                    
+                },11000)
+                window.scroll(0, 0)
+            })
+
+        })
+    </script>
+</body>
+</html>
